@@ -35,11 +35,13 @@ class ViewController: UIViewController {
         rightUpFrame = UIView(frame: CGRectMake(0, 0, 80, 80))
         rightUpFrame.layer.borderColor = UIColor.lightGrayColor().CGColor
         rightUpFrame.layer.borderWidth = 1.0
+        rightUpFrame.layer.cornerRadius = 40.0
         rightUpFrame.center = CGPointMake(self.view.center.x + 100, self.view.center.y - 100)
         
         leftDownFrame = UIView(frame: CGRectMake(0, 0, 80, 80))
         leftDownFrame.layer.borderColor = UIColor.lightGrayColor().CGColor
         leftDownFrame.layer.borderWidth = 1.0
+        leftDownFrame.layer.cornerRadius = 40.0
         leftDownFrame.center = CGPointMake(self.view.center.x - 100, self.view.center.y + 100)
         
         rightDownFrame = UIView(frame: CGRectMake(0, 0, 80, 80))
@@ -80,6 +82,13 @@ class ViewController: UIViewController {
     
     func callSwipeLeftAnimation()
     {
+        if self.rect.center == self.rightDownFrame.center {
+            self.setCornerRadiusAnimation()
+        }
+        else {
+            self.resetCornerRadiusAnimation()
+        }
+
         UIView.animateWithDuration(duration, animations: { () -> Void in
             if self.rect.center == self.rightUpFrame.center {
                 self.rect.center = self.leftUpFrame.center
@@ -92,6 +101,13 @@ class ViewController: UIViewController {
     
     func callSwipeRightAnimation()
     {
+        if self.rect.center == self.leftUpFrame.center {
+            self.setCornerRadiusAnimation()
+        }
+        else {
+            self.resetCornerRadiusAnimation()
+        }
+
         UIView.animateWithDuration(duration, animations: { () -> Void in
             if self.rect.center == self.leftUpFrame.center {
                 self.rect.center = self.rightUpFrame.center
@@ -104,6 +120,13 @@ class ViewController: UIViewController {
     
     func callSwipeUpAnimation()
     {
+        if self.rect.center == self.rightDownFrame.center {
+            self.setCornerRadiusAnimation()
+        }
+        else {
+            self.resetCornerRadiusAnimation()
+        }
+
         UIView.animateWithDuration(duration, animations: { () -> Void in
             if self.rect.center == self.leftDownFrame.center {
                 self.rect.center = self.leftUpFrame.center
@@ -116,6 +139,13 @@ class ViewController: UIViewController {
     
     func callSwipeDownAnimation()
     {
+        if self.rect.center == self.leftUpFrame.center {
+            self.setCornerRadiusAnimation()
+        }
+        else {
+            self.resetCornerRadiusAnimation()
+        }
+
         UIView.animateWithDuration(duration, animations: { () -> Void in
             if self.rect.center == self.leftUpFrame.center {
                 self.rect.center = self.leftDownFrame.center
@@ -126,6 +156,52 @@ class ViewController: UIViewController {
         })
     }
     
+    func setCornerRadiusAnimation()
+    {
+        // cornerRadiusを変更するアニメーション
+        var cornerRadiusAnimation = CABasicAnimation(keyPath: "cornerRadius")
+
+        // cornerRadius を 0 -> 37.5 に変化させるよう設定
+        cornerRadiusAnimation.fromValue = 0
+        cornerRadiusAnimation.toValue = 75.0 / 2.0
+
+        // アニメーション
+        cornerRadiusAnimation.duration = duration
+
+        // アニメーションが終了した時の状態を維持する
+        cornerRadiusAnimation.removedOnCompletion = false
+        cornerRadiusAnimation.fillMode = kCAFillModeForwards
+
+        // アニメーションが終了したらanimationDidStopを呼び出す
+        cornerRadiusAnimation.delegate = self
+
+        // アニメーションの追加
+        rect.layer.addAnimation(cornerRadiusAnimation, forKey: "cornerRadiusAnimation")
+    }
+
+    func resetCornerRadiusAnimation()
+    {
+        // cornerRadiusを変更するアニメーション
+        var cornerRadiusAnimation = CABasicAnimation(keyPath: "cornerRadius")
+
+        // cornerRadius を 37.5 -> 0 に変化させるよう設定
+        cornerRadiusAnimation.fromValue = 75.0 / 2.0
+        cornerRadiusAnimation.toValue = 0
+
+        // アニメーション
+        cornerRadiusAnimation.duration = duration
+
+        // アニメーションが終了した時の状態を維持する
+        cornerRadiusAnimation.removedOnCompletion = false
+        cornerRadiusAnimation.fillMode = kCAFillModeForwards
+
+        // アニメーションが終了したらanimationDidStopを呼び出す
+        cornerRadiusAnimation.delegate = self
+
+        // アニメーションの追加
+        rect.layer.addAnimation(cornerRadiusAnimation, forKey: "cornerRadiusAnimation")
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
