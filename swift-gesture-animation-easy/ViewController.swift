@@ -103,11 +103,8 @@ class ViewController: UIViewController {
         var cornerRadiusAnimation = CABasicAnimation(keyPath: "cornerRadius")
 
         // cornerRadius を 0 -> 37.5 に変化させるよう設定
-        cornerRadiusAnimation.fromValue = 0
-        cornerRadiusAnimation.toValue = 75.0 / 2.0
 
-        // アニメーション
-        cornerRadiusAnimation.duration = duration
+        // アニメーション時間
 
         // アニメーションが終了した時の状態を維持する
         cornerRadiusAnimation.removedOnCompletion = false
@@ -126,11 +123,8 @@ class ViewController: UIViewController {
         var cornerRadiusAnimation = CABasicAnimation(keyPath: "cornerRadius")
 
         // cornerRadius を 37.5 -> 0 に変化させるよう設定
-        cornerRadiusAnimation.fromValue = 75.0 / 2.0
-        cornerRadiusAnimation.toValue = 0
 
-        // アニメーション
-        cornerRadiusAnimation.duration = duration
+        // アニメーション時間
 
         // アニメーションが終了した時の状態を維持する
         cornerRadiusAnimation.removedOnCompletion = false
