@@ -25,6 +25,11 @@ class ViewController: UIViewController {
         configureGestures()
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     func configureViews()
     {
         leftUpFrame = UIView(frame: CGRectMake(0, 0, 80, 80))
@@ -61,6 +66,8 @@ class ViewController: UIViewController {
         self.view.addSubview(rect)
     }
     
+    //------------ ジェスチャーの追加 ------------//
+
     func configureGestures()
     {
         var swipeGestureRecognizerLeft = UISwipeGestureRecognizer(target: self, action: Selector("callSwipeLeftAnimation"))
@@ -80,6 +87,8 @@ class ViewController: UIViewController {
         rect.addGestureRecognizer(swipeGestureRecognizerDown)
     }
     
+    //------------ アニメーションs ------------//
+
     func callSwipeLeftAnimation()
     {
         if self.rect.center == self.rightDownFrame.center {
@@ -201,12 +210,6 @@ class ViewController: UIViewController {
         // アニメーションの追加
         rect.layer.addAnimation(cornerRadiusAnimation, forKey: "cornerRadiusAnimation")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
