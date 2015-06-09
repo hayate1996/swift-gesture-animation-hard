@@ -75,7 +75,7 @@ class ViewController: UIViewController {
         rect.addGestureRecognizer(swipeGestureRecognizerLeft)
     }
     
-    //------------ アニメーションs ------------//
+    //------------ アニメーション ------------//
 
     func callSwipeLeftAnimation()
     {
