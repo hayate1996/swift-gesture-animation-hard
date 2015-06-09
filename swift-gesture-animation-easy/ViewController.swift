@@ -73,96 +73,28 @@ class ViewController: UIViewController {
         var swipeGestureRecognizerLeft = UISwipeGestureRecognizer(target: self, action: Selector("callSwipeLeftAnimation"))
         swipeGestureRecognizerLeft.direction = .Left
         rect.addGestureRecognizer(swipeGestureRecognizerLeft)
-        
-        var swipeGestureRecognizerRight = UISwipeGestureRecognizer(target: self, action: Selector("callSwipeRightAnimation"))
-        swipeGestureRecognizerRight.direction = .Right
-        rect.addGestureRecognizer(swipeGestureRecognizerRight)
-        
-        var swipeGestureRecognizerUp = UISwipeGestureRecognizer(target: self, action: Selector("callSwipeUpAnimation"))
-        swipeGestureRecognizerUp.direction = .Up
-        rect.addGestureRecognizer(swipeGestureRecognizerUp)
-        
-        var swipeGestureRecognizerDown = UISwipeGestureRecognizer(target: self, action: Selector("callSwipeDownAnimation"))
-        swipeGestureRecognizerDown.direction = .Down
-        rect.addGestureRecognizer(swipeGestureRecognizerDown)
     }
     
     //------------ アニメーションs ------------//
 
     func callSwipeLeftAnimation()
     {
-        if self.rect.center == self.rightDownFrame.center {
-            self.setCornerRadiusAnimation()
-        }
-        else {
-            self.resetCornerRadiusAnimation()
-        }
 
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            if self.rect.center == self.rightUpFrame.center {
-                self.rect.center = self.leftUpFrame.center
-            }
-            else if self.rect.center == self.rightDownFrame.center {
-                self.rect.center = self.leftDownFrame.center
-            }
-        })
     }
     
     func callSwipeRightAnimation()
     {
-        if self.rect.center == self.leftUpFrame.center {
-            self.setCornerRadiusAnimation()
-        }
-        else {
-            self.resetCornerRadiusAnimation()
-        }
 
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            if self.rect.center == self.leftUpFrame.center {
-                self.rect.center = self.rightUpFrame.center
-            }
-            else if self.rect.center == self.leftDownFrame.center {
-                self.rect.center = self.rightDownFrame.center
-            }
-        })
     }
     
     func callSwipeUpAnimation()
     {
-        if self.rect.center == self.rightDownFrame.center {
-            self.setCornerRadiusAnimation()
-        }
-        else {
-            self.resetCornerRadiusAnimation()
-        }
 
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            if self.rect.center == self.leftDownFrame.center {
-                self.rect.center = self.leftUpFrame.center
-            }
-            else if self.rect.center == self.rightDownFrame.center {
-                self.rect.center = self.rightUpFrame.center
-            }
-        })
     }
     
     func callSwipeDownAnimation()
     {
-        if self.rect.center == self.leftUpFrame.center {
-            self.setCornerRadiusAnimation()
-        }
-        else {
-            self.resetCornerRadiusAnimation()
-        }
 
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            if self.rect.center == self.leftUpFrame.center {
-                self.rect.center = self.leftDownFrame.center
-            }
-            else if self.rect.center == self.rightUpFrame.center {
-                self.rect.center = self.rightDownFrame.center
-            }
-        })
     }
     
     func setCornerRadiusAnimation()
